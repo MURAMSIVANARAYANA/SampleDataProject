@@ -31,7 +31,7 @@
                                WidthRequest="70" 
                                Opacity="0.8"
                                Aspect="AspectFill"/>
-                        <Label Text="{Binding FirstName}" 
+                        <Label HorizontalOptions="StartAndExpand" 
                                LineBreakMode="NoWrap" 
                                TextColor="Black"
                                FontAttributes="Bold"
@@ -47,6 +47,14 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
+                        <Label Text=">" 
+                               VerticalTextAlignment="Center"
+                               TextColor="Black" 
+                               FontSize="25"
+                               Margin="10,0"
+                               FontAttributes="Bold" 
+                               HorizontalOptions="End" 
+                               HorizontalTextAlignment="End" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
