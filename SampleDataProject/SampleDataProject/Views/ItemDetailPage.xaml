@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleDataProject.Views.ItemDetailPage"            
+             Title="{Binding Title}">
+    <Grid RowDefinitions="Auto,1*">
+        <StackLayout Orientation="Horizontal" 
+                     BackgroundColor="Green">
+            <Image  Source="Vector"
+                    Aspect="AspectFit"
+                    Margin="20,20,0,20"
+                    HorizontalOptions="Start"
+                    HeightRequest="20"
+                    WidthRequest="20">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CancelCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Contact Information" 
+                   Margin="-30,0,0,0" 
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White" 
+                   VerticalTextAlignment="Center"
+                   FontSize="20"
+                   FontFamily="Italic" 
+                   FontAttributes="Bold"/>
+        </StackLayout>
+        <StackLayout Spacing="20" 
+                     HorizontalOptions="CenterAndExpand"
+                     Grid.Row="1" 
+                     Padding="15">
+            <Image  Source="{Binding Avatar}"
+                    Aspect="Fill" 
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="250"
+                    WidthRequest="200">
+            </Image>
+            <Label  FontSize="Medium" TextColor="Black">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Name : "/>
+                        <Span Text="{Binding FirstName}"/>
+                        <Span Text=" "/>
+                        <Span Text="{Binding LastName}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="Black" 
+                   FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Email : "/>
+                        <Span Text="{Binding Email}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="Black" 
+                   FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Id : "/>
+                        <Span Text="{Binding Id}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+        <StackLayout VerticalOptions="EndAndExpand"
+                     Margin="10"
+                     Grid.Row="1">
+            <Label Text="click on below url to learn more..." 
+                   TextColor="#333333" 
+                   FontFamily="Open Sans" 
+                   FontAttributes="Italic" 
+                   FontSize="Small"/>
+            <Label Text="{Binding Url}"
+                   TextColor="Blue"
+                   FontSize="Small">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenUrlCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label FontSize="Small">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Note : " 
+                              TextColor="#333333" 
+                              FontFamily="Open Sans"
+                              FontAttributes="Italic"/>
+                        <Span Text="{Binding About}" 
+                              TextColor="#333333"
+                              FontFamily="Open Sans"
+                              FontAttributes="Italic"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </Grid>
+</ContentPage>

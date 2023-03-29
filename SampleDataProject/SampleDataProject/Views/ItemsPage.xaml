@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SampleDataProject.Models"
+             xmlns:local="clr-namespace:SampleDataProject.ViewModels"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             x:Class="SampleDataProject.Views.ItemsPage"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="BrowseItemsPage">
+    <Grid RowDefinitions="Auto,1*">
+        <StackLayout Background="green">
+            <Label Text="{Binding Title}" 
+               Margin="10" 
+               HorizontalOptions="CenterAndExpand"
+               TextColor="White" 
+               FontSize="20"
+               FontFamily="Italic" 
+               FontAttributes="Bold"/>
+        </StackLayout>
+        <CollectionView x:Name="ItemsListView"
+                        Grid.Row="1"
+                        ItemsSource="{Binding Items}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" 
+                                 Orientation="Horizontal"
+                                 x:DataType="model:Datum">
+                        <Image Source="{Binding Avatar}" 
+                               HeightRequest="70" 
+                               WidthRequest="70" 
+                               Opacity="0.8"
+                               Aspect="AspectFill"/>
+                        <Label Text="{Binding FirstName}" 
+                               LineBreakMode="NoWrap" 
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center"
+                               Style="{DynamicResource ListItemTextStyle}" 
+                               FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding FirstName}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding LastName}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                                      CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label  Grid.Row="1" VerticalOptions="End" Margin="10">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Note : " TextColor="#333333" FontFamily="Open Sans" FontAttributes="Italic"/>
+                    <Span Text="{Binding Note}" TextColor="#333333" FontFamily="Open Sans" FontAttributes="Italic"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </Grid>
+</ContentPage>
